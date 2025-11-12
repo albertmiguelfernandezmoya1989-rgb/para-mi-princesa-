@@ -1,0 +1,223 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* === FONDO ANIMADO === */
+.hearts-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #BE1E2D;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.heart {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: radiate 5s infinite linear;
+}
+
+.heart path { fill: #fff; }
+
+.heart:nth-child(1) { animation-delay: 0s; }
+.heart:nth-child(2) { animation-delay: 1s; }
+.heart:nth-child(3) { animation-delay: 2s; }
+.heart:nth-child(4) { animation-delay: 3s; }
+.heart:nth-child(5) { animation-delay: 4s; }
+
+@keyframes radiate {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+  5% { opacity: 0.3; }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(2); }
+}
+
+/* === CONTENIDO PRINCIPAL === */
+body {
+  background-color: transparent;
+  color: #4a006e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.contenido {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titulo {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #8000b3;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 6px rgba(128, 0, 179, 0.3);
+  margin-bottom: 30px;
+}
+
+/* === CONTADOR === */
+.contador {
+  background: rgb(244, 201, 248);
+  padding: 30px 60px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(128, 0, 179, 0.2);
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+.tiempo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
+}
+
+.etiqueta {
+  font-size: 1rem;
+  color: #8000b3;
+  margin-bottom: 8px;
+}
+
+.valor {
+  font-size: 2.5rem;
+  color: #4a006e;
+  min-width: 70px;
+}
+
+/* === FRASES ROTATIVAS === */
+.frases-rotativas {
+  margin-top: 25px;
+  color: white;
+  font-size: 1.25rem;
+  font-style: italic;
+  text-shadow: 0 0 12px rgba(0, 183, 255, 0.8);
+  min-height: 35px;
+  opacity: 1;
+  transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+.frases-rotativas span {
+  display: inline-block;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.frases-rotativas span.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* === BOTÓN CARTA === */
+.btn-carta {
+  display: block;
+  margin: 25px auto 0 auto;
+  background: linear-gradient(90deg, #8000b3, #4a00b3);
+  color: white;
+  font-size: 1.1rem;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(128, 0, 179, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  animation: palpitar 2s infinite ease-in-out;
+}
+
+.btn-carta:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 20px rgba(128, 0, 179, 0.6);
+}
+
+@keyframes palpitar {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* === CARTA EMERGENTE === */
+.overlay-carta {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.carta {
+  background: white;
+  padding: 35px 45px;
+  border-radius: 25px;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(128, 0, 179, 0.3);
+  transform: scale(0.95) translateY(20px);
+  opacity: 0;
+  animation: flotar 1.4s forwards ease-in-out;
+}
+
+@keyframes flotar {
+  0% { transform: scale(0.95) translateY(20px); opacity: 0; }
+  60% { transform: scale(1.02) translateY(-5px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.carta h2 {
+  color: #8000b3;
+  margin-bottom: 15px;
+}
+
+.carta p {
+  color: #4a006e;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.cerrar-carta {
+  margin-top: 20px;
+  background: #8000b3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s, transform 0.3s ease;
+}
+
+.cerrar-carta:hover {
+  background: #4a00b3;
+  transform: scale(1.05);
+}
+
+/* === MARCA PERSONAL === */
+.marca {
+  position: fixed;
+  bottom: 7px;
+  right: 7px;
+  color: #008afc;
+  font-size: 0.95rem;
+  font-style: italic;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.8);
+  opacity: 0.7;
+  z-index: 30;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contador 💜</title>
+  <link rel="stylesheet" href="../css/CSS/style.css">
+</head>
+<body>
+
+  <!-- Fondo animado -->
+  <div class="hearts-bg">
+    <svg class="heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 101.7 87.6">
+      <path d="M51,12.8c0-0.1-0.1-0.1-0.1-0.2C31-10.7,0,0.2,0,28.9c0,27.6,40.7,56.9,50.9,58.8
+      c10.1-1.8,50.9-31.1,50.9-58.8C101.7,0.2,70.7-10.7,51,12.8z"/>
+    </svg>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="contenido">
+    <div class="titulo">Tiempo juntos</div>
+
+    <div class="contador">
+      <div class="tiempo">
+        <div class="etiqueta">Días</div>
+        <div class="valor" id="dias">00</div>
+      </div>
+      <div class="tiempo">
+        <div class="etiqueta">Horas</div>
+        <div class="valor" id="horas">00</div>
+      </div>
+      <div class="tiempo">
+        <div class="etiqueta">Minutos</div>
+        <div class="valor" id="minutos">00</div>
+      </div>
+      <div class="tiempo">
+        <div class="etiqueta">Segundos</div>
+        <div class="valor" id="segundos">00</div>
+      </div>
+    </div>
+
+    <!-- Frases románticas -->
+    <div class="frases-rotativas">
+      <span id="frase"></span>
+    </div>
+
+    <!-- Botón para abrir carta -->
+    <button class="btn-carta" onclick="abrirCarta()">💌 leer carta 💌</button>
+  </div>
+
+  <!-- Carta emergente -->
+  <div class="overlay-carta" id="overlayCarta">
+    <div class="carta">
+      <h2>Para mi princesa 💜</h2>
+      <p>
+        Desde que llegaste a mi vida, todo tiene más color, más sentido y más amor.  
+        Eres mi razón de sonreír, mi paz y mi aventura favorita.  
+        Gracias por estar, por quererme, y por hacer de cada día algo tan bonito.  
+        <br><br>
+        Te amo con todo mi corazón 💙  
+        <br>
+        — Tu niño grande 💫
+      </p>
+      <button class="cerrar-carta" onclick="cerrarCarta()">Cerrar 💕</button>
+    </div>
+  </div>
+
+  <!-- Marca personal -->
+  <div class="marca">
+    Con todo el amor del mundo : Tu niño grande 💙
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../java/script.js"></script>
+</body>
+</html>
