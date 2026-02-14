@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Ti 💙</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0b1c2d, #102a44);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    .contenedor {
+      background: #0e1624;
+      padding: 45px 60px;
+      border-radius: 30px;
+      box-shadow: 0 0 45px rgba(0,0,0,0.75);
+      text-align: center;
+      max-width: 900px;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .titulo {
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      color: #d4af37;
+    }
+
+    /* CONTADOR */
+    .contador {
+      background: #111c2f;
+      padding: 25px 40px;
+      border-radius: 20px;
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      box-shadow: inset 0 0 12px rgba(255,255,255,0.08);
+    }
+
+    .tiempo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-weight: bold;
+    }
+
+    .etiqueta {
+      font-size: 0.9rem;
+      color: #d4af37;
+      margin-bottom: 8px;
+    }
+
+    .valor {
+      font-size: 2.5rem;
+      min-width: 70px;
+    }
+
+    /* IMAGEN SOLO ARRIBA DEL BOTÓN */
+    .imagen-principal {
+      margin: 35px auto 10px;
+      width: 180px;
+      animation: flotar 4s ease-in-out infinite;
+    }
+
+    @keyframes flotar {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    .btn-mensaje {
+      margin-top: 20px;
+      padding: 15px 35px;
+      font-size: 1.1rem;
+      border-radius: 35px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #d4af37, #f2d675);
+      color: #0b1c2d;
+      font-weight: bold;
+    }
+
+    /* CARTA */
+    .mensaje-final {
+      display: none;
+      max-width: 720px;
+      padding: 40px;
+      border-radius: 30px;
+      border: 2px solid #d4af37;
+      background: rgba(14, 22, 36, 0.95);
+      font-size: 1.4rem;
+      line-height: 1.8;
+      text-align: center;
+      animation: aparecer 1s ease forwards;
+    }
+
+    .btn-volver {
+      margin-top: 30px;
+      padding: 12px 30px;
+      font-size: 1rem;
+      border-radius: 30px;
+      border: 1px solid #d4af37;
+      background: transparent;
+      color: #d4af37;
+      cursor: pointer;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- VISTA PRINCIPAL -->
+  <div class="contenedor" id="bloquePrincipal">
+
+    <div class="titulo">Nuestro tiempo juntos 💙</div>
+
+    <div class="contador">
+      <div class="tiempo">
+        <div class="etiqueta">Días</div>
+        <div class="valor" id="dias">00</div>
+      </div>
+      <div class="tiempo">
+        <div class="etiqueta">Horas</div>
+        <div class="valor" id="horas">00</div>
+      </div>
+      <div class="tiempo">
+        <div class="etiqueta">Minutos</div>
+        <div class="valor" id="minutos">00</div>
+      </div>
+      <div class="tiempo">
+        <div class="etiqueta">Segundos</div>
+        <div class="valor" id="segundos">00</div>
+      </div>
+    </div>
+
+    <!-- IMAGEN ARRIBA DEL BOTÓN -->
+    <img src="IMAGENES/rosas.png" alt="Rosas" class="imagen-principal">
+    <div>
+    <button class="btn-mensaje" onclick="mostrarMensaje()">💌 Presiona aquí</button></div>
+  </div>
+
+  <!-- CARTA (SOLO TEXTO) -->
+  <div class="mensaje-final" id="mensaje">
+    Desde el primer día supe que eras diferente.  
+    Contar el tiempo contigo no es contar días,  
+    es contar momentos que quiero repetir toda la vida.  
+    Gracias por existir y por elegirme. 💙
+
+    <button class="btn-volver" onclick="volver()">⬅ Volver</button>
+  </div>
+
+  <script>
+    const inicio = new Date(2025, 9, 6, 12, 35, 0).getTime();
+
+    function actualizarContador() {
+      const ahora = new Date().getTime();
+      const d = ahora - inicio;
+      if (d < 0) return;
+
+      document.getElementById("dias").textContent =
+        String(Math.floor(d / (1000 * 60 * 60 * 24))).padStart(2, "0");
+      document.getElementById("horas").textContent =
+        String(Math.floor((d / (1000 * 60 * 60)) % 24)).padStart(2, "0");
+      document.getElementById("minutos").textContent =
+        String(Math.floor((d / (1000 * 60)) % 60)).padStart(2, "0");
+      document.getElementById("segundos").textContent =
+        String(Math.floor((d / 1000) % 60)).padStart(2, "0");
+    }
+
+    function mostrarMensaje() {
+      document.getElementById("bloquePrincipal").style.display = "none";
+      document.getElementById("mensaje").style.display = "block";
+    }
+
+    function volver() {
+      document.getElementById("mensaje").style.display = "none";
+      document.getElementById("bloquePrincipal").style.display = "block";
+    }
+
+    actualizarContador();
+    setInterval(actualizarContador, 1000);
+  </script>
+
+</body>
+</html>
